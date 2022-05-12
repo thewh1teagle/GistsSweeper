@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/GistsSweeper/static/css/main.bee56ab1.css",
-    "main.js": "/GistsSweeper/static/js/main.af2d0d1c.js",
+    "main.css": "/GistsSweeper/static/css/main.896918f3.css",
+    "main.js": "/GistsSweeper/static/js/main.3d380c03.js",
     "index.html": "/GistsSweeper/index.html",
-    "main.bee56ab1.css.map": "/GistsSweeper/static/css/main.bee56ab1.css.map",
-    "main.af2d0d1c.js.map": "/GistsSweeper/static/js/main.af2d0d1c.js.map"
+    "main.896918f3.css.map": "/GistsSweeper/static/css/main.896918f3.css.map",
+    "main.3d380c03.js.map": "/GistsSweeper/static/js/main.3d380c03.js.map"
   },
   "entrypoints": [
-    "static/css/main.bee56ab1.css",
-    "static/js/main.af2d0d1c.js"
+    "static/css/main.896918f3.css",
+    "static/js/main.3d380c03.js"
   ]
 }
