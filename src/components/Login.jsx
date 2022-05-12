@@ -4,30 +4,27 @@ import * as api from '../gistsApi'
 import { LoadingButton } from '@mui/lab';
 import styles from '../style/login.module.css'
 
-function Login({auth, setAuth}) {
+function Login({setUser,  token, setToken, setAuthOk}) {
 
     const [openSnack, setOpenSnack] = useState(false)
+    const [loading, setLoading] = useState(false)
     
     
-    async function checkAuthButton() {    
-        setAuth({ ...auth, loading: true })
-        const result = await api.checkAuth(auth.user, auth.token)
-        if (!result) setOpenSnack(true)
-        setAuth({ ...auth, ok: result, loading: false })
+    async function checkAuthButton() {   
+        setLoading(true)
+        const result = await api.checkAuth(token)
+        setLoading(false)
+        if (!result) {
+            setOpenSnack(true)   
+            return
+        }
+        setAuthOk(true)
     }
 
     function handleEnter(e) {
         if (e.key === 'Enter') {
             checkAuthButton()
         }
-    }
-
-    function tokenHandler(e) {
-        setAuth({ ...auth, token: e.target.value })
-    }
-
-    function userHandler(e) {
-        setAuth({ ...auth, user: e.target.value })
     }
 
     return (
@@ -37,18 +34,18 @@ function Login({auth, setAuth}) {
                 className={styles.user} 
                 onKeyDown={handleEnter} 
                 variant='outlined' 
-                onChange={userHandler} 
+                onChange={e => setUser(e.target.value)} 
                 placeholder='Username' 
             />
             <TextField 
                   
                 className={styles.pass} 
                 onKeyDown={handleEnter}  
-                onChange={tokenHandler} 
+                onChange={e => setToken(e.target.value)} 
                 placeholder='Token'
             />
             <LoadingButton 
-                loading={auth.loading} 
+                loading={loading} 
                 onClick={checkAuthButton} 
                 variant='contained'>
                 Generate gists list

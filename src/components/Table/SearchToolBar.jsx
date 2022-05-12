@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 
-function QuickSearchToolbar(props) {
+function QuickSearchToolbar({value, onChange, clearSearch}) {
     return (
       <Box
         sx={{
@@ -15,8 +15,8 @@ function QuickSearchToolbar(props) {
       >
         <TextField
           variant="standard"
-          value={props.value}
-          onChange={props.onChange}
+          value={value}
+          onChange={onChange}
           placeholder="Search…"
           InputProps={{
             startAdornment: <SearchIcon fontSize="small" />,
@@ -25,8 +25,8 @@ function QuickSearchToolbar(props) {
                 title="Clear"
                 aria-label="Clear"
                 size="small"
-                style={{ visibility: props.value ? 'visible' : 'hidden' }}
-                onClick={props.clearSearch}
+                style={{ visibility: value ? 'visible' : 'hidden' }}
+                onClick={clearSearch}
               >
                 <ClearIcon fontSize="small" />
               </IconButton>

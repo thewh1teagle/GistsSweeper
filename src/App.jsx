@@ -6,18 +6,19 @@ import styles from './style/app.module.css'
 
 function App() {
 
-  const [auth, setAuth] = useState(
-    {user: '', token: '', ok: false, wrongToken: false, loading: false}
-  )
+  const [user, setUser] = useState('')
+  const [token, setToken] = useState('')
+  const [authOk, setAuthOk] = useState(false)
+
 
   return (
     <Grid className={styles.main}>
       <Typography className={styles.title}>
         Manage your gists
       </Typography>
-      {auth.ok 
-        ? <Manage auth={auth} /> 
-        : <Login auth={auth} setAuth={setAuth} />
+      {authOk 
+        ? <Manage user={user} token={token}  /> 
+        : <Login token={token} setToken={setToken} setAuthOk={setAuthOk} user={user} setUser={setUser}  />
       }
     </Grid>
   )
