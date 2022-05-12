@@ -5,23 +5,21 @@ import React, { useEffect, useState } from 'react'
 import * as api from '../../gistsApi'
 import ToolTip from '../ToolTip'
 import DataGrid from './DataGrid'
-
+import styles from '../../style/table.module.css'
 const columns = [
     { field: 'name', headerName: 'Name', width: 150 },
-    {
-        field: 'description', headerName: 'Description', width: 150, renderCell: (params) => (
+    {field: 'description', headerName: 'Description', width: 150, renderCell: (params) => (
             <ToolTip title={params.value || 'no description'}><p>{params.value}</p></ToolTip>
         )
     },
-    {
-        field: 'url', headerName: 'URL', width: 150, renderCell: (params) => (
+    { field: 'url', headerName: 'URL', width: 150, renderCell: (params) => (
             <Button onClick={() => window.open(params.value)}><LinkIcon/></Button>
-            // <a style={{ zIndex: '1' }} target="_blank" href={params.value}>{params.value}</a>
         )
     },
     { field: 'public', headerName: 'Public', width: 150, renderCell: (params) => (
         params.value ? "true" : "false"
-    )},
+        )
+    },
 
     { field: 'id', headerName: 'ID', width: 150 },
 ]
@@ -38,7 +36,6 @@ function Table({ sx, buttonHandler, auth, selected, onRefChange })  {
         selected.current.map(id => (
             api.deleteSelected(id, auth.token)
         ))
-        console.log(rows.filter(row => selected.current.includes(row.id) === false))
         setRows(
             rows.filter(row => selected.current.includes(row.id) === false)
         )
@@ -51,6 +48,7 @@ function Table({ sx, buttonHandler, auth, selected, onRefChange })  {
     useEffect(() => {
         async function loadGists() {
             let gists = await api.getAllGists(auth.user, auth.token)
+            console.log(`gists: ${gists}`)
             let formatted = api.formatGists(gists, auth.user)
             console.log(`formatted: ${formatted}`)
             setRows(formatted)
@@ -62,7 +60,7 @@ function Table({ sx, buttonHandler, auth, selected, onRefChange })  {
     return (
         <>
                 
-                <Grid sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',...sx}}>
+                <Grid className={styles.table}>
 
                     {loading 
                         ?   <CircularProgress/>

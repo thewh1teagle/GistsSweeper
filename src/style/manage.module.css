@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    width: 50%;
+    padding: 10px;
+    margin: auto;
+    margin-left: 43%;
+    gap: 5px;
+}
+
+.table {
+    width: 80%;
+    min-height: 85vh;
+    background: #fafafa !important;
+    margin: auto;
+}

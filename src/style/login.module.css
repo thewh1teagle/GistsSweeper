@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40vw;
+    height: 70vh;
+    padding: 25px;
+    gap: 10px;
+    margin: auto;
+}
+
+
+.user, .pass {
+    width: 50%;
+    border-radius: 13px;
+    background: white;
+}
+
+.user:focus, .pass:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+
+.submit {
+    background: #e0e0e0;
+    color: #68645d;
+}
+
+.submit:hover {
+    color: black;
+    background: #e0e0e0;
+}

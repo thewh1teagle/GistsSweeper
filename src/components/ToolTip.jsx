@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import { Typography } from '@mui/material';
 
@@ -14,8 +14,13 @@ export default function ControlledTooltips(props) {
   };
 
   return (
-    <Tooltip open={open} onClose={handleClose} onOpen={handleOpen} title={<Typography fontSize={14}>{props.title}</Typography>}>
-        {props.children}
+    <Tooltip
+      open={open}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      title={<Typography fontSize={14}>{props.title}</Typography>}
+    >
+      {props.children}
     </Tooltip>
   );
 }
