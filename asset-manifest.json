@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/GistsSweeper/static/css/main.81dc1d3f.css",
+    "main.js": "/GistsSweeper/static/js/main.1a964355.js",
+    "index.html": "/GistsSweeper/index.html",
+    "main.81dc1d3f.css.map": "/GistsSweeper/static/css/main.81dc1d3f.css.map",
+    "main.1a964355.js.map": "/GistsSweeper/static/js/main.1a964355.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.81dc1d3f.css",
+    "static/js/main.1a964355.js"
+  ]
+}
