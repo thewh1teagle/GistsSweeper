@@ -31,7 +31,8 @@ export default function QuickFilteringGrid({columns, rowsProp, selected, onRefCh
   return (
     <DataGrid sx={{width: '100%', height: '100%'}} autoHeight={true}
       disableSelectionOnClick={true}
-      rowsPerPageOptions={[]}
+      rowsPerPageOptions={[10]}
+      pageSize={10}
       checkboxSelection={true}
       components={{ Toolbar: QuickSearchToolbar }}
       rows={rows}

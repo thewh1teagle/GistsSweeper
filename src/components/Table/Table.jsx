@@ -1,5 +1,3 @@
-import CheckIcon from '@mui/icons-material/Check'
-import CloseIcon from '@mui/icons-material/Close'
 import LinkIcon from '@mui/icons-material/Link'
 import { Button, Grid } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -22,7 +20,7 @@ const columns = [
         )
     },
     { field: 'public', headerName: 'Public', width: 150, renderCell: (params) => (
-        params.value ? <CheckIcon color='success' /> : <CloseIcon sx={{color: '#b43030'}} />
+        params.value ? "true" : "false"
     )},
 
     { field: 'id', headerName: 'ID', width: 150 },
@@ -38,7 +36,7 @@ function Table({ sx, buttonHandler, auth, selected, onRefChange })  {
 
     function deleteSelected() {
         selected.current.map(id => (
-            api.deleteSelected(id)
+            api.deleteSelected(id, auth.token)
         ))
         console.log(rows.filter(row => selected.current.includes(row.id) === false))
         setRows(
@@ -48,17 +46,19 @@ function Table({ sx, buttonHandler, auth, selected, onRefChange })  {
     }
     buttonHandler.current = deleteSelected
 
-    async function loadGists() {
-        let gists = await api.getAllGists(auth.user, auth.token)
-        let formatted = api.formatGists(gists, auth.user)
-        console.log(`formatted: ${formatted}`)
-        setRows(formatted)
-        setLoading(false)
-    }
+
 
     useEffect(() => {
+        async function loadGists() {
+            let gists = await api.getAllGists(auth.user, auth.token)
+            let formatted = api.formatGists(gists, auth.user)
+            console.log(`formatted: ${formatted}`)
+            setRows(formatted)
+            setLoading(false)
+        }
         loadGists()
-    })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <>
                 

@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Alert, Box, Button, Grid, Snackbar, TextField, Typography } from '@mui/material';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Table from './components/Table/Table';
 import { checkAuth } from './gistsApi';
 
@@ -14,9 +14,9 @@ function App() {
 
   const [continueBtn, setContinueBtn] = useState(false)
 
-  const onRefChange = useCallback(selected => {
+  const onRefChange = (selected) => {
     setSelectedCount(selected.length)
-  })
+  }
 
   async function checkAuthButton() {
     setAuth({ ...auth, loading: true })
@@ -34,6 +34,7 @@ function App() {
   }
 
   function deleteBtn() {
+    if (selectedCount <= 0) return 
     if (!continueBtn) setContinueBtn(true)
     else {
       alert('deleting...')
@@ -65,13 +66,18 @@ function App() {
           auth.ok
             ?
             <>
-              <Box sx={{ width: '80%', margin: 'auto', display: 'flex', justifyContent: 'center', padding: '10px' }}>
+              <Box sx={{ width: '50%', margin: 'auto', marginLeft: '43%', display: 'flex', padding: '10px', gap: '5px' }}>
                 <Button onClick={() => deleteBtn()} variant='contained'
-                  color={continueBtn ? 'error' : 'primary'}
+                  color={continueBtn ? 'error' : 'primary'} style={{}}
                 >
+                  
                   <DeleteIcon />
                   {continueBtn ? 'Continue?' :'DELETE'} {selectedCount > 0 ? ` (${selectedCount})` : null}
                 </Button>
+                {continueBtn && 
+                <Button color="primary" variant='contained' onClick={() => setContinueBtn(false)}>Cancel</Button>
+                }
+                
               </Box>
               <Table selected={selected} onRefChange={onRefChange} auth={auth} sx={{ minHeight: '85vh', width: '80%', backgroundColor: '#fafafa', margin: 'auto' }} buttonHandler={buttonHandler} />
             </>
@@ -82,7 +88,7 @@ function App() {
           <TextField onKeyDown={handleEnter} variant='outlined' sx={{ width: '50%', borderRadius: '13px', backgroundColor: 'white' }} onChange={(e) => setAuth({ ...auth, user: e.target.value })} placeholder='Username'></TextField>
           <TextField onKeyDown={handleEnter} sx={{ width: '50%', borderRadius: '13px', backgroundColor: 'white' }} onChange={(e) => setAuth({ ...auth, token: e.target.value })} placeholder='Token'></TextField>
           <LoadingButton loading={auth.loading} onClick={checkAuthButton} variant='contained'>Generate gists list</LoadingButton>
-          <Button sx={{ background: '#e0e0e0', color: '#68645d', '&:hover': { color: 'black', background: '#e0e0e0' } }} target='_blank' href='https://github.com/settings/tokens' onClick={checkAuthButton} variant='contained'>Generate access token</Button>
+          <Button sx={{ background: '#e0e0e0', color: '#68645d', '&:hover': { color: 'black', background: '#e0e0e0' } }} target='_blank' href='https://github.com/settings/tokens' variant='contained'>Generate access token</Button>
           <Snackbar open={openSnack} onClose={() => setOpenSnack(false)} autoHideDuration={3000}>
             <Alert severity="error" sx={{ width: '100%' }}>
               token is wrong
