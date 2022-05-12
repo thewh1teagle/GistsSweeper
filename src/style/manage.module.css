@@ -3,7 +3,7 @@
     width: 50%;
     padding: 10px;
     margin: auto;
-    margin-left: 43%;
+    justify-content: center;
     gap: 5px;
 }
 
@@ -12,4 +12,12 @@
     min-height: 85vh;
     background: #fafafa !important;
     margin: auto;
+}
+
+.buttons {
+    font-size: 0.8em;
+}
+
+@media screen and (max-width: 500px) {
+    .buttons {font-size: 0.6em}
 }

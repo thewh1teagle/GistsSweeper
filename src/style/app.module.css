@@ -11,3 +11,11 @@
     padding-top: 0.5em;
     font-weight: bold;
 }
+
+@media screen and (max-width: 500px) {
+    .title {
+        font-size: 2em;
+        padding-top: 1em;
+    }
+    
+}

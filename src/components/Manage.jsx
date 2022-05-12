@@ -28,6 +28,7 @@ function Manage({ auth }) {
         <>
             <Box className={styles.container}>
                 <Button 
+                    className={styles.buttons}
                     disabled={selectedCount <= 0} 
                     onClick={deleteBtn} 
                     variant='contained' 
@@ -39,6 +40,7 @@ function Manage({ auth }) {
                 </Button>
                 {continueBtn &&
                     <Button 
+                        className={styles.button}
                         color="primary" 
                         variant='contained' 
                         onClick={() => setContinueBtn(false)}
