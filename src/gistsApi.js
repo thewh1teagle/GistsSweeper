@@ -11,7 +11,7 @@ async function apiReq(token, endPoint, params = {}, method = 'GET') {
 async function gistsCount(user, token) {
   const res = await apiReq(token, `users/${user}`)
   const data = await res.json()
-  return data.public_gists
+  return data.public_gists + data.private_gists
 }
 
 
